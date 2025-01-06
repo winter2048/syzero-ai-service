@@ -19,7 +19,7 @@ namespace SyZero.OpenAI.Core.OpenAI
         private string openAIBaseUrl => AppConfig.GetSection("OpenAIUrl") ?? "https://api.openai.com";
         private string ollamaBaseUrl => "http://192.168.2.180:11434";
 
-        private string GetBaseUrl(string model) => model.StartsWith("ollama") ? ollamaBaseUrl : openAIBaseUrl;
+        private string GetBaseUrl(string model) => model.StartsWith("ollama:") ? ollamaBaseUrl : openAIBaseUrl;
 
         public async Task<Dictionary<string, string>> GetModels()
         {
@@ -58,9 +58,9 @@ namespace SyZero.OpenAI.Core.OpenAI
         public async Task<ChatResponse> ChatCompletion(ChatRequest chatRequest)
         {
             string baseUrl = GetBaseUrl(chatRequest.Model);
-            if (chatRequest.Model.StartsWith("ollama"))
+            if (chatRequest.Model.StartsWith("ollama:"))
             {
-                chatRequest.Model = chatRequest.Model.Split(":")[1];
+                chatRequest.Model = chatRequest.Model.Replace("ollama:", "");
             }
             var res = RestHelper.PostJson<ChatResponse>($"{baseUrl}/v1/chat/completions", JsonConvert.SerializeObject(chatRequest), $"Bearer {AppConfig.GetSection("OpenAIToken")}");
             return res.Entity;
@@ -69,9 +69,9 @@ namespace SyZero.OpenAI.Core.OpenAI
         public async IAsyncEnumerable<ChatResponse> ChatCompletionAsync(ChatRequest chatRequest)
         {
             string baseUrl = GetBaseUrl(chatRequest.Model);
-            if (chatRequest.Model.StartsWith("ollama"))
+            if (chatRequest.Model.StartsWith("ollama:"))
             {
-                chatRequest.Model = chatRequest.Model.Split(":")[1];
+                chatRequest.Model = chatRequest.Model.Replace("ollama:", "");
             }
             var request = new RestRequest($"{baseUrl}/v1/chat/completions", Method.Post);
             var client = SyZeroUtil.GetService<RestClient>();
@@ -137,9 +137,9 @@ namespace SyZero.OpenAI.Core.OpenAI
         public async Task<CompletionResponse> Completion(CompletionRequest completionRequest)
         {
             string baseUrl = GetBaseUrl(completionRequest.Model);
-            if (completionRequest.Model.StartsWith("ollama"))
+            if (completionRequest.Model.StartsWith("ollama:"))
             {
-                completionRequest.Model = completionRequest.Model.Split(":")[1];
+                completionRequest.Model = completionRequest.Model.Replace("ollama:", "");
             }
             var res = RestHelper.PostJson<CompletionResponse>($"{baseUrl}/v1/completions", JsonConvert.SerializeObject(completionRequest), $"Bearer {AppConfig.GetSection("OpenAIToken")}");
             return res.Entity;
