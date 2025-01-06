@@ -4,6 +4,13 @@
         <name>SyZero.OpenAI.IApplication</name>
     </assembly>
     <members>
+        <member name="M:SyZero.OpenAI.IApplication.Chat.IChatAppService.GetModels">
+            <summary>
+            获取模型列表
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
         <member name="M:SyZero.OpenAI.IApplication.Chat.IChatAppService.CreateSession">
             <summary>
             创建会话

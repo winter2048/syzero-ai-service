@@ -51,6 +51,12 @@ namespace SyZero.OpenAI.Application.Chat
             _openAIService = openAIService;
         }
 
+        public async Task<Dictionary<string, string>> GetModels()
+        {
+            CheckPermission("");
+            return await _openAIService.GetModels();
+        }
+
         public async Task<string> CreateSession()
         {
             CheckPermission("");
@@ -132,18 +138,14 @@ namespace SyZero.OpenAI.Application.Chat
             var chatSession = await GetSession(messageDto.SessionId);
             chatSession.Messages.Add(new ChatMessageDto(MessageRoleEnum.User, messageDto.Message));
 
-            var res =  _openAIService.ChatCompletionAsync(new Core.OpenAI.Dto.ChatRequest()
+            var res = await _openAIService.ChatCompletion(new Core.OpenAI.Dto.ChatRequest()
             {
                 Model = messageDto.Model,
                 Messages = chatSession.Messages.Where(p => !p.Content.Contains("data:image/png;base64")).Select(p => new Core.OpenAI.Dto.Message { Role = p.Role.ToString().ToLower(), Content = p.Content }).ToList()
             });
 
-            string content = "";
-            await  foreach (var item in res)
-            {
-                content += item.Choices[0]?.Delta?.Content;
-                Console.Write(item.Choices[0]?.Delta?.Content);
-            }
+            string content = res.Choices[0]?.Message?.Content;
+            Console.Write(content);
 
             // 判断是否生成图片
             Match imageMatch = Regex.Match(content, @"(?<=\$\[image\]\()(.*?)(?=\))");

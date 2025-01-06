@@ -32,6 +32,11 @@ namespace SyZero.OpenAI.IApplication.Chat
             throw new NotImplementedException();
         }
 
+        public Task<Dictionary<string, string>> GetModels()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ChatSessionDto> GetSession(string sessionId)
         {
             _logger.Error("Fallback => ChatAppService:Chat");

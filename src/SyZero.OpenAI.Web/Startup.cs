@@ -1,5 +1,4 @@
-﻿using Autofac;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
@@ -50,41 +49,38 @@ namespace SyZero.OpenAI.Web
                 options.SerializerSettings.Converters.Add(new LongToStrConverter());
             });
 
+            services.AddSyZero();
+
             //动态WebApi
             services.AddDynamicWebApi(new DynamicWebApiOptions()
             {
                 DefaultApiPrefix = "/api",
                 DefaultAreaName = AppConfig.ServerOptions.Name
             });
+
             //Swagger
             services.AddSwagger();
+            //使用AutoMapper
+            services.AddSyZeroAutoMapper();
+            //使用SqlSugar仓储
+            services.AddSyZeroSqlSugar<DbContext>();
+            //注入控制器
+            services.AddSyZeroController();
+            //注入公共层
+            services.AddSyZeroCommon();
+            //注入Log4Net
+            services.AddSyZeroLog4Net();
+            //注入Redis
+            services.AddSyZeroRedis();
+            //注入Consul
+            services.AddConsul();
+            //注入Feign
+            services.AddSyZeroFeign();
+
             services.AddSingleton<OpenAIService>();
 
             services.AddSignalR();
         }
-
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            //使用SyZero
-            builder.AddSyZero();
-            //使用AutoMapper
-            builder.AddSyZeroAutoMapper();
-            //使用SqlSugar仓储
-            builder.AddSyZeroSqlSugar<DbContext>();
-            //注入控制器
-            builder.AddSyZeroController();
-            //注入Log4Net
-            builder.AddSyZeroLog4Net();
-            //注入Redis
-            builder.AddSyZeroRedis();
-            //注入公共层
-            builder.AddSyZeroCommon();
-            //注入Consul
-            builder.AddConsul();
-            //注入Feign
-            builder.AddSyZeroFeign();
-        }
-
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

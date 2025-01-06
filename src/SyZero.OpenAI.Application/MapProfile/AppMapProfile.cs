@@ -13,7 +13,7 @@ namespace SyZero.OpenAI.Application.MapProfile
     {
         public AppMapProfile()
         {
-            IJsonSerialize jsonSerialize = AutofacUtil.GetService<IJsonSerialize>();
+            IJsonSerialize jsonSerialize = SyZeroUtil.GetService<IJsonSerialize>();
             CreateMap<Scene, SceneDto>().ForMember(des => des.Content, opt => opt.MapFrom(p => jsonSerialize.JSONToObject<List<ChatMessageDto>>(p.Content)));
             CreateMap<SceneDto, Scene>().ForMember(des => des.Content, opt => opt.MapFrom(p => jsonSerialize.ObjectToJSON(p.Content)));
         }

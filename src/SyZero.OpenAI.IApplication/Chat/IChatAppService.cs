@@ -10,6 +10,14 @@ namespace SyZero.OpenAI.IApplication.Chat
     public interface IChatAppService : IApplicationServiceBase
     {
         /// <summary>
+        /// 获取模型列表
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [ApiMethod(HttpMethod.GET, "/api/SyZero.OpenAI/Chat/Models")]
+        Task<Dictionary<string, string>> GetModels();
+
+        /// <summary>
         /// 创建会话
         /// </summary>
         /// <param name="dto"></param>

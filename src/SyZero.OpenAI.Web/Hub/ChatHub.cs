@@ -32,7 +32,7 @@ namespace SyZero.OpenAI.Web.Hub
         {
             if (Context.GetHttpContext().Request.Query.TryGetValue("accessToken", out var accessToken))
             {
-                var sy = AutofacUtil.GetService<ISySession>().Parse(accessToken);
+                var sy = SyZeroUtil.GetService<ISySession>().Parse(accessToken);
 
                 // 从accessToken获取登录信息
                 if (ActiveConnections.Any(p=>p.Key == sy.UserId.Value))
