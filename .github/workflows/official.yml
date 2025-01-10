@@ -96,7 +96,7 @@ jobs:
         uses: docker/build-push-action@v4
         if: github.ref_name == 'master'
         with:
-          context: ./Release/net6.0/
+          context: ./Release/net8.0/
           push: true
           tags: |
             harbor.syzero.com/syzero/syzero.ai.service:latest
@@ -106,7 +106,7 @@ jobs:
         uses: docker/build-push-action@v4
         if: github.ref_name == 'dev'
         with:
-          context: ./Release/net6.0/
+          context: ./Release/net8.0/
           push: true
           tags: |
             harbor.syzero.com/syzero/syzero.ai.service:dev
