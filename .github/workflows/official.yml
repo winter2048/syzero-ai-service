@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          path: syzero-openai-service
+          path: syzero-ai-service
 
       - name: Checkout syzero-core repo
         uses: actions/checkout@v3
@@ -34,21 +34,21 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Restore dependencies
-        run: dotnet restore ./syzero-openai-service/src/SyZero.AI.sln
+        run: dotnet restore ./syzero-ai-service/src/SyZero.AI.sln
 
       - name: Build
-        run: dotnet build --configuration Release ./syzero-openai-service/src/SyZero.AI.sln --no-restore
+        run: dotnet build --configuration Release ./syzero-ai-service/src/SyZero.AI.sln --no-restore
 
       - name: Upload package
         uses: actions/upload-artifact@v3
         with:
           name: build
           path: |
-            ./syzero-openai-service/src/SyZero.AI.Web/bin/*
+            ./syzero-ai-service/src/SyZero.AI.Web/bin/*
 
       # - name: Commit app
       #   run: |
-      #     cd syzero-openai-service
+      #     cd syzero-ai-service
       #     $gf=$(git diff)
       #     if ("$gf" -ne "") {
       #       echo "IS_GIT_CHANGE=true" >> $env:GITHUB_ENV
@@ -66,7 +66,7 @@ jobs:
       #   if: env.IS_GIT_CHANGE == 'true'
       #   with:
       #     github_token: ${{ secrets.GB_NUGET_TOKEN }}
-      #     directory: ./syzero-openai-service
+      #     directory: ./syzero-ai-service
       #     branch: ${{ github.ref }}
       #     force: true
 
