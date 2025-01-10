@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SyZero.AI.Application</name>
+    </assembly>
+    <members>
+        <member name="M:SyZero.AI.Application.Chat.ChatAppService.SendMessage(SyZero.AI.IApplication.Chat.Dto.SendMessageDto)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

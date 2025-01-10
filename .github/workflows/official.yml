@@ -34,17 +34,17 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Restore dependencies
-        run: dotnet restore ./syzero-openai-service/src/SyZero.OpenAI.sln
+        run: dotnet restore ./syzero-openai-service/src/SyZero.AI.sln
 
       - name: Build
-        run: dotnet build --configuration Release ./syzero-openai-service/src/SyZero.OpenAI.sln --no-restore
+        run: dotnet build --configuration Release ./syzero-openai-service/src/SyZero.AI.sln --no-restore
 
       - name: Upload package
         uses: actions/upload-artifact@v3
         with:
           name: build
           path: |
-            ./syzero-openai-service/src/SyZero.OpenAI.Web/bin/*
+            ./syzero-openai-service/src/SyZero.AI.Web/bin/*
 
       # - name: Commit app
       #   run: |
@@ -99,8 +99,8 @@ jobs:
           context: ./Release/net6.0/
           push: true
           tags: |
-            harbor.syzero.com/syzero/syzero.openai.service:latest
-            harbor.syzero.com/syzero/syzero.openai.service:${{ github.run_number }}
+            harbor.syzero.com/syzero/syzero.ai.service:latest
+            harbor.syzero.com/syzero/syzero.ai.service:${{ github.run_number }}
 
       - name: Build and push (dev)
         uses: docker/build-push-action@v4
@@ -109,5 +109,5 @@ jobs:
           context: ./Release/net6.0/
           push: true
           tags: |
-            harbor.syzero.com/syzero/syzero.openai.service:dev
-            harbor.syzero.com/syzero/syzero.openai.service:${{ github.run_number }}-dev
+            harbor.syzero.com/syzero/syzero.ai.service:dev
+            harbor.syzero.com/syzero/syzero.ai.service:${{ github.run_number }}-dev

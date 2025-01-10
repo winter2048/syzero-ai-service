@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s.kuboard.cn/layer: svc
+  name: template2-service
+  namespace: template1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: template2
+      app: service
+  SyZero.AI:
+    metadata:
+      labels:
+        project: template2
+        app: service
+    spec:
+      imagePullSecrets:
+      - name: registry-pull-secret
+      containers:
+      - name: ssr
+        image: $IMAGE_NAME
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: web
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: template2-service
+  namespace: template1
+  labels:
+    project: template2
+    app: service
+spec:
+  selector:
+    project: template2
+    app: service
+  ports:
+  - name: web
+    port: 5000
+    targetPort: 5000
+    protocol: TCP
+    nodePort: 30005
+  type: NodePort
