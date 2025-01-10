@@ -30,7 +30,7 @@ env:
   SSH_HOST: ${{ secrets.SSH_HOST }}
   SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
   SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-  IMAGE_NAME: syzero.openai.service
+  IMAGE_NAME: syzero.ai.service
   IMAGE_VERSION: dev
   ENVIRONMENT: Test
 

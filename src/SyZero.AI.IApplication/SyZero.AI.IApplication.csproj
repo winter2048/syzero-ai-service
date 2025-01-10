@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>SyZero.AI.IApplication.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\syzero-core\src\SyZero.Core\SyZero\SyZero.csproj" />
+  </ItemGroup>
+
+  <Target Name="AppServiceCopy" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <AppServiceDll Include="$(OutputPath)\$(MSBuildProjectName).dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AppServiceDll)" DestinationFolder="..\..\app" />
+  </Target>
+  
+</Project>
+

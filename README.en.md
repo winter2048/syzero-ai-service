@@ -1,4 +1,4 @@
-# syzero-openai-service
+# syzero-ai-service
 
 #### Description
 授权服务
