@@ -62,7 +62,7 @@ namespace SyZero.AI.Application.Completion
             string msg = "";
             try
             {
-                var test = await sss.GetContainerList();
+                var test = await sss.ContainerInfo("Test1");
                 msg = _jsonSerialize.ObjectToJSON(test);
             }
             catch (Exception ex)
