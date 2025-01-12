@@ -13,7 +13,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Dev"
       }
     },
     "SyZeroBlog.Web": {
@@ -21,7 +21,7 @@
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Test"
+        "ASPNETCORE_ENVIRONMENT": "Dev"
       },
       "applicationUrl": "http://localhost:5000"
     },

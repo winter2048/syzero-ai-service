@@ -22,6 +22,8 @@ using SqlSugar;
 using SyZero.AI.IApplication.Completion;
 using SyZero.AI.IApplication.Completion.Dto;
 using SyZero.AI.Core;
+using SyZero.FileStore.IApplication.Container;
+using SyZero.Util;
 
 namespace SyZero.AI.Application.Completion
 {
@@ -33,6 +35,7 @@ namespace SyZero.AI.Application.Completion
         private readonly IJsonSerialize _jsonSerialize;
         private readonly ILogger _logger;
         private readonly OpenAIService _openAIService;
+        private readonly VectorStoreService _vectorStoreService;
 
         public CompletionAppService(
            ICache cache,
@@ -40,7 +43,8 @@ namespace SyZero.AI.Application.Completion
            IToken token,
            IJsonSerialize jsonSerialize,
            ILogger logger,
-           OpenAIService openAIService)
+           OpenAIService openAIService,
+           VectorStoreService vectorStoreService)
         {
             _cache = cache;
             _syEncode = syEncode;
@@ -48,19 +52,44 @@ namespace SyZero.AI.Application.Completion
             _jsonSerialize = jsonSerialize;
             _logger = logger;
             _openAIService = openAIService;
+            _vectorStoreService = vectorStoreService;
         }
 
         public async Task<string> Send(CompletionDto completionDto)
         {
-            CheckPermission("");
+            await Console.Out.WriteLineAsync("ssss");
+            var sss = SyZeroUtil.GetService<IContainerAppService>();
+            string msg = "";
+            try
+            {
+                var test = await sss.GetContainerList();
+                msg = _jsonSerialize.ObjectToJSON(test);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
+
+            //CheckPermission("");
             //var res = await _openAIService.Completion(new Core.OpenAI.Dto.CompletionRequest()
             //{
             //    Model = "text-davinci-003",
             //    Prompt = completionDto.Message
             //});
 
-            var a = await _openAIService.GenerateEmbeddingVectorAsync(completionDto.Message, completionDto.Model);
-            return a.ToString();
+            //var a = await _openAIService.GenerateEmbeddingVectorAsync(completionDto.Message, AIEmbeddingModel.Ollama_Nomic_Embed_Text.ToDescription());
+
+            //await _vectorStoreService.Test(111111111, a);
+
+            //await _vectorStoreService.SearchAsync(a);
+
+            return msg;
+        }
+
+        public Task<string> Send2(string user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.GET, "/api/SyZero.AI/Chat/Models")]
+        [Get("/api/SyZero.AI/Chat/Models")]
         Task<Dictionary<string, string>> GetModels();
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.POST, "/api/SyZero.AI/Chat/Session")]
+        [Post("/api/SyZero.AI/Chat/Session")]
         Task<string> CreateSession();
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.PUT, "/api/SyZero.AI/Chat/Session/{sessionId}")]
+        [Put("/api/SyZero.AI/Chat/Session/{sessionId}")]
         Task<bool> PutSession(string sessionId, List<ChatMessageDto> messages);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.DELETE, "/api/SyZero.AI/Chat/Session/{sessionId}")]
+        [Delete("/api/SyZero.AI/Chat/Session/{sessionId}")]
         Task DelSession(string sessionId);
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.GET, "/api/SyZero.AI/Chat/Session/{sessionId}")]
+        [Get("/api/SyZero.AI/Chat/Session/{sessionId}")]
         Task<ChatSessionDto> GetSession(string sessionId);
 
         /// <summary>
@@ -54,14 +54,14 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="messageDto"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.POST)]
+        [Post]
         Task<string> SendMessage(SendMessageDto messageDto);
 
         /// <summary>
         /// 获取我的所以会话
         /// </summary>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.GET, "/api/SyZero.AI/Chat/Sessions")]
+        [Get("/api/SyZero.AI/Chat/Sessions")]
         Task<List<ChatSessionDto>> MySession();
     }
 }

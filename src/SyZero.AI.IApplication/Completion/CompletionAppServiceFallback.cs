@@ -14,5 +14,10 @@ namespace SyZero.AI.IApplication.Completion
         {
             throw new NotImplementedException();
         }
+
+        public Task<string> Send2(string user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.POST, "/api/SyZero.AI/Scene")]
+        [Post("/api/SyZero.AI/Scene")]
         Task<SceneDto> CreateScene(SceneDto dto);
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="sceneId"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.PUT, "/api/SyZero.AI/Scene/{sceneId}")]
+        [Put("/api/SyZero.AI/Scene/{sceneId}")]
         Task<SceneDto> PutScene(string sceneId, SceneDto dto);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="sceneId"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.GET, "/api/SyZero.AI/Scene/{sceneId}")]
+        [Get("/api/SyZero.AI/Scene/{sceneId}")]
         Task<SceneDto> GetScene(string sceneId);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="sceneId"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.GET, "/api/SyZero.AI/Scenes")]
+        [Get("/api/SyZero.AI/Scenes")]
         Task<List<SceneDto>> MyScene();
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="sceneId"></param>
         /// <returns></returns>
-        [ApiMethod(HttpMethod.DELETE, "/api/SyZero.AI/Scene/{sceneId}")]
+        [Delete("/api/SyZero.AI/Scene/{sceneId}")]
         Task<bool>DelScene(string sceneId);
     }
 }

@@ -55,7 +55,7 @@ namespace SyZero.AI.Application.Chat
 
         public async Task<Dictionary<string, string>> GetModels()
         {
-            CheckPermission("");
+            //CheckPermission("");
             return await _openAIService.GetModels();
         }
 
