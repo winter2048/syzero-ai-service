@@ -15,12 +15,14 @@ using SyZero.Util;
 using SyZero.AI.Core;
 using Microsoft.Extensions.AI;
 using SyZero.ObjectMapper;
+using Renci.SshNet.Security;
+using Org.BouncyCastle.Crypto.Tls;
 
 namespace SyZero.AI.Web.Hub
 {
     public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
     {
-        public static Dictionary<long, string> ActiveConnections = new Dictionary<long, string>();
+        public static Dictionary<long, HashSet<string>> ActiveConnections = new Dictionary<long, HashSet<string>>();
         private readonly OpenAIService _openAIService;
         private readonly IObjectMapper _objectMapper;
         private readonly ICache _cache;
@@ -36,18 +38,22 @@ namespace SyZero.AI.Web.Hub
         {
             if (Context.GetHttpContext().Request.Query.TryGetValue("accessToken", out var accessToken))
             {
+                // 从accessToken获取登录信息
                 var sy = SyZeroUtil.GetService<ISySession>().Parse(accessToken);
 
-                // 从accessToken获取登录信息
-                if (ActiveConnections.Any(p=>p.Key == sy.UserId.Value))
+                if (sy?.UserId.HasValue == true)
                 {
-                    Clients.Client(ActiveConnections[sy.UserId.Value]).SendAsync("Disconnect");
-                    ActiveConnections[sy.UserId.Value] = Context.ConnectionId;
+                    if (ActiveConnections.Any(p => p.Key == sy.UserId.Value))
+                    {
+                        //Clients.Client(ActiveConnections[sy.UserId.Value]).SendAsync("Disconnect");
+                        ActiveConnections[sy.UserId.Value].Add(Context.ConnectionId);
+                    }
+                    else
+                    {
+                        ActiveConnections.Add(sy.UserId.Value, new HashSet<string>() { Context.ConnectionId });
+                    }
                 }
-                else
-                {
-                    ActiveConnections.Add(sy.UserId.Value, Context.ConnectionId);
-                }
+                
             }
 
             return base.OnConnectedAsync();
@@ -55,9 +61,13 @@ namespace SyZero.AI.Web.Hub
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            foreach (var Key in ActiveConnections.Where(p => p.Value == Context.ConnectionId).Select(p => p.Key).ToList())
+            foreach (var item in ActiveConnections.Where(p => p.Value.Contains(Context.ConnectionId)))
             {
-                ActiveConnections.Remove(Key);
+                item.Value.Remove(Context.ConnectionId);
+                if (item.Value.Count == 0)
+                {
+                    ActiveConnections.Remove(item.Key);
+                }
             };
            
             return base.OnDisconnectedAsync(exception);
@@ -65,9 +75,11 @@ namespace SyZero.AI.Web.Hub
 
         public async Task SendMessage(SendMessageDto messageDto)
         {
-            if (ActiveConnections.Any(p => p.Value == Context.ConnectionId))
+            if (ActiveConnections.Any(p => p.Value.Contains(Context.ConnectionId)))
             {
-                var userId = ActiveConnections.FirstOrDefault(p => p.Value == Context.ConnectionId).Key;
+                var activeConnection = ActiveConnections.FirstOrDefault(p => p.Value.Contains(Context.ConnectionId));
+                var userId = activeConnection.Key;
+                var connectionIds = activeConnection.Value;
 
                 var messages = _cache.Get<List<ChatMessageDto>>($"ChatSession:{userId}:{messageDto.SessionId}");
                 var chatSession = new ChatSessionDto()
@@ -77,7 +89,8 @@ namespace SyZero.AI.Web.Hub
                 };
                 chatSession.Messages.Add(new ChatMessageDto(MessageRoleEnum.User, messageDto.Message));
                 await _cache.SetAsync($"ChatSession:{userId}:{messageDto.SessionId}", chatSession.Messages);
-                await Clients.Client(Context.ConnectionId).SendAsync("ReceiveMessage", GetSessions(userId, messageDto.SessionId));
+
+                await ClientBatchSend(connectionIds, "ReceiveMessage", GetSessions(userId, messageDto.SessionId));
 
                 var res = _openAIService.ChatCompletionAsync(_objectMapper.Map<List<ChatMessage>>(chatSession.Messages), messageDto.Model);
 
@@ -86,10 +99,10 @@ namespace SyZero.AI.Web.Hub
 
                 await foreach (var item in res)
                 {
-                    chatSession.Messages.LastOrDefault(p=>p.Role == MessageRoleEnum.Assistant).Content += item.Text;
+                    chatSession.Messages.LastOrDefault(p => p.Role == MessageRoleEnum.Assistant).Content += item.Text;
                     Console.Write(item.Text);
                     await _cache.SetAsync($"ChatSession:{userId}:{messageDto.SessionId}", chatSession.Messages);
-                    await Clients.Client(Context.ConnectionId).SendAsync("ReceiveMessage", GetSessions(userId, messageDto.SessionId));
+                    await ClientBatchSend(connectionIds, "ReceiveMessage", GetSessions(userId, messageDto.SessionId));
                 }
             }
         }
@@ -114,6 +127,12 @@ namespace SyZero.AI.Web.Hub
                 Id = sessionId,
                 Messages = messages
             };
+        }
+
+        private async Task ClientBatchSend(IEnumerable<string> connectionIds, string method, object obj)
+        {
+            var sendTask = connectionIds.Select(connectionId => Clients.Client(connectionId).SendAsync(method, obj));
+            await Task.WhenAll(sendTask);
         }
     }
 }
