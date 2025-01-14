@@ -14,7 +14,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [Get("/api/SyZero.AI/Chat/Models")]
+        [Get("Models")]
         Task<Dictionary<string, string>> GetModels();
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [Post("/api/SyZero.AI/Chat/Session")]
+        [Post("Session")]
         Task<string> CreateSession();
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        [Put("/api/SyZero.AI/Chat/Session/{sessionId}")]
+        [Put("Session/{sessionId}")]
         Task<bool> PutSession(string sessionId, List<ChatMessageDto> messages);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        [Delete("/api/SyZero.AI/Chat/Session/{sessionId}")]
+        [Delete("Session/{sessionId}")]
         Task DelSession(string sessionId);
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="sessionId"></param>
         /// <returns></returns>
-        [Get("/api/SyZero.AI/Chat/Session/{sessionId}")]
+        [Get("Session/{sessionId}")]
         Task<ChatSessionDto> GetSession(string sessionId);
 
         /// <summary>
@@ -54,14 +54,14 @@ namespace SyZero.AI.IApplication.Chat
         /// </summary>
         /// <param name="messageDto"></param>
         /// <returns></returns>
-        [Post]
+        [Post("SendMessage")]
         Task<string> SendMessage(SendMessageDto messageDto);
 
         /// <summary>
         /// 获取我的所以会话
         /// </summary>
         /// <returns></returns>
-        [Get("/api/SyZero.AI/Chat/Sessions")]
+        [Get("Sessions")]
         Task<List<ChatSessionDto>> MySession();
     }
 }

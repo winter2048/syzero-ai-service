@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Dev"
       }
     },
-    "SyZeroBlog.Web": {
+    "SyZero.AI.Web": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
