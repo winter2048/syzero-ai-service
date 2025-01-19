@@ -93,6 +93,7 @@ namespace SyZero.AI.Web
             services.AddKeyedEmbeddingGenerator(AIProvider.OpenAI, openAIClient.AsEmbeddingGenerator(AIEmbeddingModel.OpenAI_Text_Embedding3_Large.ToModel()));
 
             services.AddSingleton<OpenAIService>();
+            services.AddSingleton<VectorStoreService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -22,6 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="SyZero.FileStore.IApplication">
+      <HintPath>..\..\app\SyZero.FileStore.IApplication.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="SyZero.AI.Application.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

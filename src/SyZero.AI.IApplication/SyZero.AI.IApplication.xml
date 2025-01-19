@@ -87,5 +87,119 @@
             <param name="sceneId"></param>
             <returns></returns>
         </member>
+        <member name="T:Refit.Implementation.Generated">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.GetModels">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.CreateSession">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.PutSession(System.String,System.Collections.Generic.List{SyZero.AI.IApplication.Chat.Dto.ChatMessageDto})">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.DelSession(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.GetSession(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.SendMessage(SyZero.AI.IApplication.Chat.Dto.SendMessageDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.MySession">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.SyZero#AI#IApplication#Chat#IChatAppService#GetModels">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.SyZero#AI#IApplication#Chat#IChatAppService#CreateSession">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.SyZero#AI#IApplication#Chat#IChatAppService#PutSession(System.String,System.Collections.Generic.List{SyZero.AI.IApplication.Chat.Dto.ChatMessageDto})">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.SyZero#AI#IApplication#Chat#IChatAppService#DelSession(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.SyZero#AI#IApplication#Chat#IChatAppService#GetSession(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.SyZero#AI#IApplication#Chat#IChatAppService#SendMessage(SyZero.AI.IApplication.Chat.Dto.SendMessageDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatIChatAppService.SyZero#AI#IApplication#Chat#IChatAppService#MySession">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.CreateScene(SyZero.AI.IApplication.Chat.Dto.SceneDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.PutScene(System.String,SyZero.AI.IApplication.Chat.Dto.SceneDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.GetScene(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.MyScene">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.DelScene(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.SyZero#AI#IApplication#Chat#ISceneAppService#CreateScene(SyZero.AI.IApplication.Chat.Dto.SceneDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.SyZero#AI#IApplication#Chat#ISceneAppService#PutScene(System.String,SyZero.AI.IApplication.Chat.Dto.SceneDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.SyZero#AI#IApplication#Chat#ISceneAppService#GetScene(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.SyZero#AI#IApplication#Chat#ISceneAppService#MyScene">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationChatISceneAppService.SyZero#AI#IApplication#Chat#ISceneAppService#DelScene(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.SyZeroAIIApplicationCompletionICompletionAppService">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.SyZeroAIIApplicationCompletionICompletionAppService.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationCompletionICompletionAppService.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationCompletionICompletionAppService.Send(SyZero.AI.IApplication.Completion.Dto.CompletionDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationCompletionICompletionAppService.Send2(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationCompletionICompletionAppService.SyZero#AI#IApplication#Completion#ICompletionAppService#Send(SyZero.AI.IApplication.Completion.Dto.CompletionDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationCompletionICompletionAppService.SyZero#AI#IApplication#Completion#ICompletionAppService#Send2(System.String)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

@@ -11,7 +11,10 @@ namespace SyZero.AI.IApplication.Completion
 {
     public interface ICompletionAppService : IApplicationServiceBase
     {
-        [ApiMethod(HttpMethod.POST)]
+        [Get]
         Task<string> Send(CompletionDto completionDto);
+
+        [Post("/users/{user}")]
+        Task<string> Send2(string user);
     }
 }
