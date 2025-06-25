@@ -34,6 +34,10 @@ env:
   IMAGE_NAME: syzero.ai.service
   IMAGE_VERSION: dev
   ENVIRONMENT: Test
+  CONTAINER_NAME: syzero.ai.service
+  CONTAINER_PORT: 5002
+  CONTAINER_TEST_PORT: 6002
+  CONTAINER_PROD_PORT: 5002
 
 jobs:
   deploy:
@@ -52,14 +56,11 @@ jobs:
             environment=${{ inputs.environment }}
           fi
           if [ "$environment" == "Production" ]; then
-            echo "SSH_HOST=${{ secrets.SSH_HOST }}" >> $GITHUB_ENV
-            echo "SSH_USERNAME=${{ secrets.SSH_USERNAME }}" >> $GITHUB_ENV
-            echo "SSH_PASSWORD=${{ secrets.SSH_PASSWORD }}" >> $GITHUB_ENV
+            echo "CONTAINER_PORT=${{ env.CONTAINER_PROD_PORT }}" >> $GITHUB_ENV
           fi
           if [ "$environment" == "Test" ]; then
-            echo "SSH_HOST=${{ secrets.SSH_HOST_TEST }}" >> $GITHUB_ENV
-            echo "SSH_USERNAME=${{ secrets.SSH_USERNAME_TEST }}" >> $GITHUB_ENV
-            echo "SSH_PASSWORD=${{ secrets.SSH_PASSWORD_TEST }}" >> $GITHUB_ENV
+            echo "CONTAINER_PORT=${{ env.CONTAINER_TEST_PORT }}" >> $GITHUB_ENV
+            echo "CONTAINER_NAME=${{ env.CONTAINER_NAME }}-test" >> $GITHUB_ENV
           fi
 
       - name: executing remote ssh commands using password
@@ -70,7 +71,7 @@ jobs:
           password: ${{ env.SSH_PASSWORD }}
           script: |
             docker login harbor.syzero.com -u ${{ secrets.HARBOR_DOCKERHUB_USERNAME }} -p ${{ secrets.HARBOR_DOCKERHUB_TOKEN }}
-            docker stop ${{ env.IMAGE_NAME }}
-            docker rm ${{ env.IMAGE_NAME }}
+            docker stop ${{ env.CONTAINER_NAME }}
+            docker rm ${{ env.CONTAINER_NAME }}
             docker pull harbor.syzero.com/syzero/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
-            docker run -d -p 5002:5001 --name=${{ env.IMAGE_NAME }} --restart=always -e "ASPNETCORE_ENVIRONMENT=${{ env.ENVIRONMENT }}" -e "Consul__Token=${{ env.CONSUL_TOKEN }}" harbor.syzero.com/syzero/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
+            docker run -d -p ${{ env.CONTAINER_PORT }}:5001 --name=${{ env.CONTAINER_NAME }} --restart=always -e "ASPNETCORE_ENVIRONMENT=${{ env.ENVIRONMENT }}" -e "Consul__Token=${{ env.CONSUL_TOKEN }}" harbor.syzero.com/syzero/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
