@@ -70,7 +70,7 @@ jobs:
           username: ${{ env.SSH_USERNAME }}
           password: ${{ env.SSH_PASSWORD }}
           script: |
-            docker login harbor.syzero.com -u ${{ secrets.HARBOR_DOCKERHUB_USERNAME }} -p ${{ secrets.HARBOR_DOCKERHUB_TOKEN }}
+            docker login harbor.syzero.com -u '${{ secrets.HARBOR_DOCKERHUB_USERNAME }}' -p '${{ secrets.HARBOR_DOCKERHUB_TOKEN }}'
             docker stop ${{ env.CONTAINER_NAME }}
             docker rm ${{ env.CONTAINER_NAME }}
             docker pull harbor.syzero.com/syzero/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
