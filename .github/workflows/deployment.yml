@@ -74,4 +74,4 @@ jobs:
             docker stop ${{ env.CONTAINER_NAME }}
             docker rm ${{ env.CONTAINER_NAME }}
             docker pull harbor.syzero.com/syzero/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
-            docker run -d -p ${{ env.CONTAINER_PORT }}:5001 --name=${{ env.CONTAINER_NAME }} --restart=always -e "ASPNETCORE_ENVIRONMENT=${{ env.ENVIRONMENT }}" -e "Consul__Token=${{ env.CONSUL_TOKEN }}" harbor.syzero.com/syzero/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
+            docker run -d -p ${{ env.CONTAINER_PORT }}:5001 --name=${{ env.CONTAINER_NAME }} --restart=always -e "ASPNETCORE_ENVIRONMENT=${{ env.ENVIRONMENT }}" -e "Consul__Token=${{ env.CONSUL_TOKEN }}" --network "SyZero-${{ env.ENVIRONMENT }}" harbor.syzero.com/syzero/${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
