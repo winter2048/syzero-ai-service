@@ -65,21 +65,21 @@ namespace SyZero.AI.Core
             return completedTasks[0].Concat(completedTasks[1]).GroupBy(kvp => kvp.Key).ToDictionary(g => g.Key, g => g.Last().Value);
         }
 
-        public async Task<ChatCompletion> ChatCompletion(List<ChatMessage> chatMessages, string aIChatModel)
+        public async Task<ChatResponse> ChatCompletion(List<ChatMessage> chatMessages, string aIChatModel)
         {
             var cetChatClient = GetChatClient(aIChatModel);
 
-            return await cetChatClient.CompleteAsync(chatMessages, new ChatOptions()
+            return await cetChatClient.GetResponseAsync(chatMessages, new ChatOptions()
             {
                 ModelId = aIChatModel.ToModel(),
             });
         }
 
-        public IAsyncEnumerable<StreamingChatCompletionUpdate> ChatCompletionAsync(List<ChatMessage> chatMessages, string aIChatModel)
+        public IAsyncEnumerable<ChatResponseUpdate> ChatCompletionAsync(List<ChatMessage> chatMessages, string aIChatModel)
         {
             var cetChatClient = GetChatClient(aIChatModel);
 
-            return cetChatClient.CompleteStreamingAsync(chatMessages, new ChatOptions()
+            return cetChatClient.GetStreamingResponseAsync(chatMessages, new ChatOptions()
             {
                 ModelId = aIChatModel.ToModel(),
             });

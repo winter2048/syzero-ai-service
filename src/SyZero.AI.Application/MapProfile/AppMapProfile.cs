@@ -4,7 +4,9 @@ using Microsoft.Extensions.AI;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using SyZero.AI.Core.Chat;
+using SyZero.AI.Core.Doc;
 using SyZero.AI.IApplication.Chat.Dto;
+using SyZero.AI.IApplication.Doc.Dto;
 using SyZero.Serialization;
 using SyZero.Util;
 
@@ -38,6 +40,12 @@ namespace SyZero.AI.Application.MapProfile
                 }
                 return new ChatMessage(role, des.Content);
             });
+            CreateMap<DocumentDto, Document>();
+            CreateMap<Document, DocumentDto>();
+
+            CreateMap<DocumentCategory, DocumentCategoryDto>();
+            CreateMap<DocumentCategoryDto, DocumentCategory>();
+
         }
     }
 }

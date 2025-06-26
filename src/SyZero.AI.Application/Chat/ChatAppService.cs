@@ -143,7 +143,7 @@ namespace SyZero.AI.Application.Chat
             _logger.Info(string.Format("Chat: [{0}][{1}] {2}", messageDto.Model, MessageRoleEnum.User.ToString(), messageDto.Message));
 
             var res = await _openAIService.ChatCompletion(ObjectMapper.Map<List<ChatMessage>>(chatSession.Messages), messageDto.Model);
-            string content = res.Message.Text;
+            string content = res.Text;
             _logger.Info(string.Format("Chat: [{0}][{1}] {2}", messageDto.Model, MessageRoleEnum.Assistant.ToString(), content));
 
             chatSession.Messages.Add(new ChatMessageDto(MessageRoleEnum.Assistant, content));
