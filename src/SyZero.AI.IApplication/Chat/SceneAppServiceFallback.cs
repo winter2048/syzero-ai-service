@@ -1,22 +1,21 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using SyZero.Cache;
 using SyZero.Client;
-using SyZero.Logger;
 using SyZero.AI.IApplication.Chat.Dto;
 using SyZero.Runtime.Security;
 using SyZero.Serialization;
+using Microsoft.Extensions.Logging;
 
 namespace SyZero.AI.IApplication.Chat
 {
     public class SceneAppServiceFallback : ISceneAppService, IFallback
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<SceneAppServiceFallback> _logger;
 
-        public SceneAppServiceFallback(ILogger logger)
+        public SceneAppServiceFallback(ILogger<SceneAppServiceFallback> logger)
         {
             _logger = logger;
         }

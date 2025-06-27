@@ -31,6 +31,7 @@
     <ProjectReference Include="..\..\..\syzero-core\src\SyZero.Core\SyZero.DynamicWebApi\SyZero.DynamicWebApi.csproj" />
     <ProjectReference Include="..\..\..\syzero-core\src\SyZero.Core\SyZero.Feign\SyZero.Feign.csproj" />
     <ProjectReference Include="..\..\..\syzero-core\src\SyZero.Core\SyZero.Log4Net\SyZero.Log4Net.csproj" />
+    <ProjectReference Include="..\..\..\syzero-core\src\SyZero.Core\SyZero.OpenTelemetry\SyZero.OpenTelemetry.csproj" />
     <ProjectReference Include="..\..\..\syzero-core\src\SyZero.Core\SyZero.Redis\SyZero.Redis.csproj" />
     <ProjectReference Include="..\..\..\syzero-core\src\SyZero.Core\SyZero.Swagger\SyZero.Swagger.csproj" />
     <ProjectReference Include="..\SyZero.AI.Application\SyZero.AI.Application.csproj" />
