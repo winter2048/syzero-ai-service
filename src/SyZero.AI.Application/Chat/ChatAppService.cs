@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using SyZero;
 using SyZero.Application.Service;
 using SyZero.Cache;
-using SyZero.Logger;
 using SyZero.Runtime.Security;
 using SyZero.Runtime.Session;
 using SyZero.Serialization;
@@ -25,6 +24,7 @@ using System.Text.RegularExpressions;
 using SyZero.AI.Core;
 using SyZero.AI.Core.Chat;
 using Microsoft.Extensions.AI;
+using Microsoft.Extensions.Logging;
 
 namespace SyZero.AI.Application.Chat
 {
@@ -34,7 +34,6 @@ namespace SyZero.AI.Application.Chat
         private readonly ISyEncode _syEncode;
         private readonly IToken _token;
         private readonly IJsonSerialize _jsonSerialize;
-        private readonly ILogger<ChatAppService> _logger;
         private readonly OpenAIService _openAIService;
 
         public ChatAppService(
@@ -42,14 +41,12 @@ namespace SyZero.AI.Application.Chat
            ISyEncode syEncode,
            IToken token,
            IJsonSerialize jsonSerialize,
-           ILogger<ChatAppService> logger,
            OpenAIService openAIService)
         {
             _cache = cache;
             _syEncode = syEncode;
             _token = token;
             _jsonSerialize = jsonSerialize;
-            _logger = logger;
             _openAIService = openAIService;
         }
 
@@ -140,11 +137,11 @@ namespace SyZero.AI.Application.Chat
             CheckPermission("");
             var chatSession = await GetSession(messageDto.SessionId);
             chatSession.Messages.Add(new ChatMessageDto(MessageRoleEnum.User, messageDto.Message));
-            _logger.Info(string.Format("Chat: [{0}][{1}] {2}", messageDto.Model, MessageRoleEnum.User.ToString(), messageDto.Message));
+            Logger.LogInformation(string.Format("Chat: [{0}][{1}] {2}", messageDto.Model, MessageRoleEnum.User.ToString(), messageDto.Message));
 
             var res = await _openAIService.ChatCompletion(ObjectMapper.Map<List<ChatMessage>>(chatSession.Messages), messageDto.Model);
-            string content = res.Message.Text;
-            _logger.Info(string.Format("Chat: [{0}][{1}] {2}", messageDto.Model, MessageRoleEnum.Assistant.ToString(), content));
+            string content = res.Text;
+            Logger.LogInformation(string.Format("Chat: [{0}][{1}] {2}", messageDto.Model, MessageRoleEnum.Assistant.ToString(), content));
 
             chatSession.Messages.Add(new ChatMessageDto(MessageRoleEnum.Assistant, content));
             await _cache.SetAsync($"ChatSession:{SySession.UserId}:{messageDto.SessionId}", chatSession.Messages);

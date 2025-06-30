@@ -1,19 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>SyZero.AI.Application</RootNamespace>
     <AssemblyName>SyZero.AI.Application</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
+    <UserSecretsId>8ec79bfd-1814-4e43-a475-91d7832ed010</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>SyZero.AI.Application.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\syzero-core\src\SyZero.Core\SyZero.Web.Common\SyZero.Web.Common.csproj" />

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using SyZero.Application.Service;
 using SyZero.Cache;
-using SyZero.Logger;
 using SyZero.AI.Core.Chat;
 using SyZero.AI.IApplication.Chat;
 using SyZero.AI.IApplication.Chat.Dto;
@@ -22,7 +21,6 @@ namespace SyZero.AI.Application.Chat
         private readonly ISyEncode _syEncode;
         private readonly IToken _token;
         private readonly IJsonSerialize _jsonSerialize;
-        private readonly ILogger _logger;
         private readonly OpenAIService _openAIService;
         private readonly ISceneRepository _sceneRepository;
 
@@ -31,7 +29,6 @@ namespace SyZero.AI.Application.Chat
            ISyEncode syEncode,
            IToken token,
            IJsonSerialize jsonSerialize,
-           ILogger logger,
            OpenAIService openAIService,
            ISceneRepository sceneRepository)
         {
@@ -39,7 +36,6 @@ namespace SyZero.AI.Application.Chat
             _syEncode = syEncode;
             _token = token;
             _jsonSerialize = jsonSerialize;
-            _logger = logger;
             _openAIService = openAIService;
             _sceneRepository = sceneRepository;
         }

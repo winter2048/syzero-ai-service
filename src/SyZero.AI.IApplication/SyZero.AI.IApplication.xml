@@ -87,6 +87,21 @@
             <param name="sceneId"></param>
             <returns></returns>
         </member>
+        <member name="P:SyZero.AI.IApplication.Doc.Dto.PageAndSortFilterQueryDto.Key">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:SyZero.AI.IApplication.Doc.Dto.PageAndSortFilterQueryDto.CategoryId">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="T:SyZero.AI.IApplication.Doc.IDocumentAppService">
+            <summary>
+            文档
+            </summary>
+        </member>
         <member name="T:Refit.Implementation.Generated">
             <inheritdoc />
         </member>
@@ -199,6 +214,54 @@
             <inheritdoc />
         </member>
         <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationCompletionICompletionAppService.SyZero#AI#IApplication#Completion#ICompletionAppService#Send2(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentAppService">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentAppService.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentAppService.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentDto,SyZero#AI#IApplication#Doc#Dto#DocumentDto}#Get(System.Int64)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentDto,SyZero#AI#IApplication#Doc#Dto#DocumentDto}#List(SyZero.AI.IApplication.Doc.Dto.PageAndSortFilterQueryDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentDto,SyZero#AI#IApplication#Doc#Dto#DocumentDto}#Create(SyZero.AI.IApplication.Doc.Dto.CreateDocumentDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentDto,SyZero#AI#IApplication#Doc#Dto#DocumentDto}#Update(System.Int64,SyZero.AI.IApplication.Doc.Dto.DocumentDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentDto,SyZero#AI#IApplication#Doc#Dto#DocumentDto}#Delete(System.Int64)">
+            <inheritdoc />
+        </member>
+        <member name="T:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentCategoryAppService">
+            <inheritdoc />
+        </member>
+        <member name="P:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentCategoryAppService.Client">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentCategoryAppService.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentCategoryAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto}#Get(System.Int64)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentCategoryAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto}#List(SyZero.AI.IApplication.Doc.Dto.PageAndSortFilterQueryDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentCategoryAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto}#Create(SyZero.AI.IApplication.Doc.Dto.CreateDocumentCategoryDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentCategoryAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto}#Update(System.Int64,SyZero.AI.IApplication.Doc.Dto.DocumentCategoryDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SyZeroAIIApplicationDocIDocumentCategoryAppService.SyZero#Application#Service#IAsyncCrudAppService{SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#PageAndSortFilterQueryDto,SyZero#AI#IApplication#Doc#Dto#CreateDocumentCategoryDto,SyZero#AI#IApplication#Doc#Dto#DocumentCategoryDto}#Delete(System.Int64)">
             <inheritdoc />
         </member>
     </members>

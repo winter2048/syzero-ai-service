@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using SyZero;
 using SyZero.Application.Service;
 using SyZero.Cache;
-using SyZero.Logger;
 using SyZero.Runtime.Security;
 using SyZero.Runtime.Session;
 using SyZero.Serialization;
@@ -33,7 +32,6 @@ namespace SyZero.AI.Application.Completion
         private readonly ISyEncode _syEncode;
         private readonly IToken _token;
         private readonly IJsonSerialize _jsonSerialize;
-        private readonly ILogger _logger;
         private readonly OpenAIService _openAIService;
         private readonly VectorStoreService _vectorStoreService;
 
@@ -42,7 +40,6 @@ namespace SyZero.AI.Application.Completion
            ISyEncode syEncode,
            IToken token,
            IJsonSerialize jsonSerialize,
-           ILogger logger,
            OpenAIService openAIService,
            VectorStoreService vectorStoreService)
         {
@@ -50,7 +47,6 @@ namespace SyZero.AI.Application.Completion
             _syEncode = syEncode;
             _token = token;
             _jsonSerialize = jsonSerialize;
-            _logger = logger;
             _openAIService = openAIService;
             _vectorStoreService = vectorStoreService;
         }
